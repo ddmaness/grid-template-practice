@@ -3,7 +3,7 @@ $color-accent: #4dd2ff;
 $color-dark: #00384d;
 $color-dark-highlighted: #005e80;
 $color-darkest: #00131a;
-$color-border: #ccc;
+$color-muted: #aaa;
 $shadow-card: 3px 3px 5px 3px rgba(0, 0, 0, 0.5);
 $shadow-focus: 0 0 0 1px #fff;
 /*************************************
@@ -11,13 +11,13 @@ $shadow-focus: 0 0 0 1px #fff;
 Base Styles
 
 **************************************/
-*, a, h3, li {
+*, a, h3, li, input {
     font-family: 'Roboto', sans-serif;
     box-sizing: border-box;
+    font-size: 16px
 }
 
 body {
-    margin: 20px;
     background-color: $color-darkest
 }
 
@@ -41,22 +41,24 @@ Grid Main Layout
 
 **************************************/
 
-.top-nav {
-    grid-area: nav-bar
-}
-
 .side-nav {
     grid-area: side-nav
 }
 
-#app {
+.social-media-list {
+    grid-area: social-media-list
+}
+
+.grid {
     display: grid;
     grid-gap: 20px;
     grid-auto-rows: minmax(50px, auto);
     grid-template-columns:  2fr 2fr 3fr 3fr 3fr;
     grid-template-areas:
-        "nav-bar nav-bar nav-bar nav-bar nav-bar"
-        "side-nav side-nav      .       .        ."
+        "side-nav            side-nav      .       .        ."
+        "social-media-list       .         .       .        .";
+    margin: 20px;
+    background-color: $color-darkest
 }
 
 /*************************************
@@ -73,14 +75,53 @@ Top Nav Bar
 }
 
 .top-nav {
+    z-index: 1;
+    position: fixed;
+    top:0px;
+    width: 100%;
+    height: 64px;
+    padding: 0 24px 0 24px;
+    background-color: #fff;
     align-items: center;
     justify-content: space-between;
+    &-left li,
+    &-right > * {
+        margin-right: 12px;
+    }
+    svg {
+        height: 25px;
+        width: 25px;
+        margin: 0 5px;
+    }
+    path,
+    polygon {
+        fill: $color-muted;
+    }
+    a:hover path,
+    a:hover polygon {
+        fill: $color-main;
+    }
+    .top-site-links a{
+        color: $color-muted;
+        &:hover {
+            color: $color-main;
+        }
+    }
+    .top-nav-social {
+        border-right: 1px solid $color-muted;
+        border-left: 1px solid $color-muted;
+    }
+    input {
+        border: none;
+        height: 25px;
+        background: url(../images/search.svg) no-repeat;
+        background-size: 20px 20px;
+        background-position: right center;
+
+
+    }
 }
 
-.top-nav-left li,
-.top-nav-right > * {
-    margin-right: 12px;
-}
 
 /*************************************
 
@@ -187,7 +228,7 @@ Side Nav Bar
         align-items: center;
         padding-left: 24px;
         height: 48px;
-        border-bottom: 1px solid $color-border;
+        border-bottom: 1px solid $color-muted;
         &:hover {
             background-color: $color-accent;
             color: white;
@@ -198,13 +239,14 @@ Side Nav Bar
         }
     }
     svg {
+        height: 25px;
         width: 25px;
         margin-right: 16px;
     }
 }
 
 .contact-links {
-    background-color: #ccc;
+    background-color: $color-muted;
     color: #fff;
     li {
         display: flex;
@@ -216,5 +258,38 @@ Side Nav Bar
         width: 25px;
         height: 25px;
         margin-right: 16px;
+    }
+}
+
+/*************************************
+
+Social Media List
+
+**************************************/
+
+.social-media-list {
+    padding: 24px;
+    background-color: #fff;
+    ul {
+        display: block;
+        margin: auto;
+    }
+    a {
+        color: $color-muted;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 40px;
+        &:hover path{
+            fill: $color-main;
+        }
+        &:hover {
+            color: $color-main;
+        }
+    }
+    svg {
+        margin-right: 16px;
+        height: 25px;
+        width: 25px;
     }
 }
