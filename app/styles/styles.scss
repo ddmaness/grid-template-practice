@@ -14,7 +14,7 @@ $shadow-focus-black: 0 0 0 2px #000;
 Base Styles
 
 **************************************/
-*, a, h3, li, input {
+*, a, h2, h3, li, input {
     font-family: 'Roboto', sans-serif;
     box-sizing: border-box;
     font-size: 16px
@@ -60,8 +60,16 @@ Grid Main Layout
     grid-area: twitter;
 }
 
+.sign-in {
+    grid-area: sign-in;
+}
+
+.newsletter {
+    grid-area: newsletter;
+}
+
 .credits {
-    grid-area: credits
+    grid-area: credits;
 }
 
 .grid {
@@ -73,6 +81,8 @@ Grid Main Layout
         "side-nav            side-nav        .       .        ."
         "social-media-list   facebook        .       .        ."
         "social-media-list   twitter         .       .        ."
+        "sign-in             sign-in         .       .        ."
+        "newsletter          newsletter      .       .        ."
         "credits             credits       credits  credits  credits";
 
     margin: 20px;
@@ -380,6 +390,72 @@ Social Media List
     background-color:$color-twitter;
     button {
         background-color: $color-twitter;
+    }
+}
+
+
+/*************************************
+
+Sign In
+
+**************************************/
+
+.sign-in {
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px;
+    justify-content: space-between;
+    h2 {
+        font-size: 32px;
+    }
+    img {
+        height: 30px;
+        width: 30px;
+        transition: all 200ms ease;
+    }
+    .sign-in-icons ul {
+        display: block;
+        min-width: 125px;
+        display: flex;
+        justify-content: space-between;
+    }
+    a:hover img {
+        transform: scale(1.1);
+    }
+}
+
+/*************************************
+
+Newsletter
+
+**************************************/
+
+.newsletter {
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px;
+    justify-content: space-between;
+    h2 {
+        font-size: 32px;
+    }
+    input {
+        height: 40px;
+    }
+    .submit {
+        height: 40px;
+        margin-left: 8px;
+        border: none;
+        color: #fff;
+        background-color: $color-main;
+        transition: all 200ms ease;
+        &:hover {
+            cursor: pointer;
+            background-color: $color-accent;
+        }
     }
 }
 

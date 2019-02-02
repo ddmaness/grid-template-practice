@@ -288,6 +288,35 @@ Vue.component('social-media-card', {
     `
 });
 
+Vue.component('sign-in', {
+    template:`
+        <div class='sign-in card'>
+            <h2>Sign In</h2>
+            <p>Amet nostrud adipisicing sint deserunt esse anim enim deserunt.</p>
+            <div class='sign-in-icons'>
+                <ul>
+                    <li><a href='#'><img src='../images/facebook-neg.svg'></a></li>
+                    <li><a href='#'><img src='../images/twitter-neg.svg'></a></li>
+                    <li><a href='#'><img src='../images/google-neg.svg'></a></li>
+                </ul> 
+            </div>
+        </div>
+    `
+})
+
+Vue.component('newsletter', {
+    template:`
+    <div class='newsletter card'>
+        <h2>Join the Newsletter</h2>
+        <p>Consectetur amet consectetur non ut</p>
+        <form>
+            <input type='email' placeholder='Enter email address'>
+            <input class='submit' type='submit' value='Subscribe'></input>
+        </form>
+    </div>
+    `
+})
+
 Vue.component('credits' , {
     template:`
     <div class='credits card'>Icons made by 
@@ -317,6 +346,8 @@ const app = new Vue({
                     imageSrc='../images/twitter.svg'
                     followers='132k' 
                 ></social-media-card>
+                <sign-in></sign-in>
+                <newsletter></newsletter>
                 <credits></credits>
             </div>
         </div>
