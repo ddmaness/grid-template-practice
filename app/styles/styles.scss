@@ -4,8 +4,11 @@ $color-dark: #00384d;
 $color-dark-highlighted: #005e80;
 $color-darkest: #00131a;
 $color-muted: #aaa;
+$color-facebook: #3b5998;
+$color-twitter: #00acee;
 $shadow-card: 3px 3px 5px 3px rgba(0, 0, 0, 0.5);
-$shadow-focus: 0 0 0 1px #fff;
+$shadow-focus-white: 0 0 0 2px #fff;
+$shadow-focus-black: 0 0 0 2px #000;
 /*************************************
 
 Base Styles
@@ -42,11 +45,23 @@ Grid Main Layout
 **************************************/
 
 .side-nav {
-    grid-area: side-nav
+    grid-area: side-nav;
 }
 
 .social-media-list {
-    grid-area: social-media-list
+    grid-area: social-media-list;
+}
+
+.facebook {
+    grid-area: facebook;
+}
+
+.twitter {
+    grid-area: twitter;
+}
+
+.credits {
+    grid-area: credits
 }
 
 .grid {
@@ -55,8 +70,11 @@ Grid Main Layout
     grid-auto-rows: minmax(50px, auto);
     grid-template-columns:  2fr 2fr 3fr 3fr 3fr;
     grid-template-areas:
-        "side-nav            side-nav      .       .        ."
-        "social-media-list       .         .       .        .";
+        "side-nav            side-nav        .       .        ."
+        "social-media-list   facebook        .       .        ."
+        "social-media-list   twitter         .       .        ."
+        "credits             credits       credits  credits  credits";
+
     margin: 20px;
     background-color: $color-darkest
 }
@@ -77,7 +95,7 @@ Top Nav Bar
 .top-nav {
     z-index: 1;
     position: fixed;
-    top:0px;
+    top:-64px;
     width: 100%;
     height: 64px;
     padding: 0 24px 0 24px;
@@ -205,7 +223,7 @@ Side Nav Bar
         }
         &:focus {
             outline: none;
-            box-shadow: $shadow-focus
+            box-shadow: $shadow-focus-white;
         }
         img {
             width: 7px;
@@ -270,10 +288,6 @@ Social Media List
 .social-media-list {
     padding: 24px;
     background-color: #fff;
-    ul {
-        display: block;
-        margin: auto;
-    }
     a {
         color: $color-muted;
         display: flex;
@@ -291,5 +305,96 @@ Social Media List
         margin-right: 16px;
         height: 25px;
         width: 25px;
+    }
+}
+
+/*************************************
+
+Social Media List
+
+**************************************/
+
+@keyframes draw {
+	to{
+		stroke-dashoffset: 0;
+	}
+}
+
+.social-media-card {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+    img {
+        height: 40px;
+        width: 40px;
+    }
+    button {
+        margin-left: 16px;
+        height:30px;
+	    width:30px;
+	    border-radius: 50%;
+	    background-color: transparent;
+        border: 2px solid #fff;
+        &:focus {
+            outline: none;
+            box-shadow: $shadow-focus-black;
+        }
+
+    }
+    polyline {
+        fill: none;
+        stroke-width: 2px;
+        stroke: #fff;
+        stroke-dasharray: 30;
+	    stroke-dashoffset: 30;
+    }
+    button.active polyline {
+        animation: draw 200ms alternate forwards linear;
+    }
+    .is-following {
+        margin-top: 16px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        h3 {
+            font-size: 20px;
+            font-weight: 700;
+            float: left;
+        }
+        div:last-of-type {
+            display: flex;
+            align-items: center;
+        }
+    }
+}
+
+.facebook {
+    background-color: $color-facebook;
+    button {
+        background-color: $color-facebook;
+    }
+}
+
+.twitter {
+    background-color:$color-twitter;
+    button {
+        background-color: $color-twitter;
+    }
+}
+
+/*************************************
+
+Credits
+
+**************************************/
+
+.credits {
+    padding: 24px;
+    text-align: center;
+    background-color: #fff;
+    color: $color-muted;
+    a {
+        color: $color-main;
     }
 }

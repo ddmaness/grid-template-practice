@@ -252,6 +252,50 @@ Vue.component('social-media-list', {
     `
 });
 
+Vue.component('social-media-card', {
+    data: function() {
+        return {
+            following: false,
+        };
+    },
+    methods: {
+        toggleFollow: function() {
+            this.following = !this.following;
+            console.log(this.following)
+        },
+    },
+    props: ['platform', 'imageSrc', 'followers'],
+    template: `
+    <div class='social-media-card card' v-bind:class='platform'>
+        <img v-bind:src='imageSrc'>
+        <div class="is-following">
+            <h3>{{followers}}</h3>
+            <div>
+                <h3 v-if=following>Following</h3>
+                <h3 v-else>Follow</h3>
+                <button v-bind:class="{active:following}" v-on:click='this.toggleFollow'>
+                    <svg height='30' width='30'>
+                        <polyline 
+                            class = 'checkmark'
+                            points = "0,16 5,21 15,6"
+                        ></polyline>
+                    </svg>
+                </button>
+            </div>
+            
+        </div>
+    </div>
+    `
+});
+
+Vue.component('credits' , {
+    template:`
+    <div class='credits card'>Icons made by 
+        <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a>, <a href="https://www.freepik.com/" title="Freepik">Freepik</a>, <a href="https://www.flaticon.com/authors/google" title="Google">Google</a>, <a href="https://www.flaticon.com/authors/yannick" title="Yannick">Yannick</a>, <a href="https://www.flaticon.com/authors/zurb" title="Zurb">Zurb</a>, <a href="https://www.flaticon.com/authors/elegant-themes" title="Elegant Themes">Elegant Themes</a>, <a href="https://www.flaticon.com/authors/dave-gandy" title="Dave Gandy">Dave Gandy</a>, <a href="https://www.flaticon.com/authors/elegant-themes" title="Elegant Themes">Elegant Themes</a>   
+        from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+    `
+})
+
 const app = new Vue({
     el:'#app',
     data: {
@@ -263,6 +307,17 @@ const app = new Vue({
             <div class='grid'>
                 <side-nav-bar></side-nav-bar>
                 <social-media-list></social-media-list>
+                <social-media-card
+                    platform='facebook'
+                    imageSrc='../images/facebook.svg'
+                    followers='24k' 
+                ></social-media-card>
+                <social-media-card
+                    platform='twitter'
+                    imageSrc='../images/twitter.svg'
+                    followers='132k' 
+                ></social-media-card>
+                <credits></credits>
             </div>
         </div>
     `
