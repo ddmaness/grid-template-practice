@@ -20,6 +20,10 @@ Base Styles
     font-size: 16px
 }
 
+b {
+    font-weight: 700;
+}
+
 body {
     background-color: $color-darkest
 }
@@ -76,6 +80,22 @@ Grid Main Layout
     grid-area: youtube;
 }
 
+.follow-share {
+    grid-area: follow-share;
+}
+
+.instagram {
+    grid-area: instagram;
+}
+
+.twitter-feed {
+    grid-area: twitter-feed;
+}
+
+.calendar {
+    grid-area: calendar;
+}
+
 .credits {
     grid-area: credits;
 }
@@ -85,13 +105,15 @@ Grid Main Layout
     grid-gap: 20px;
     grid-auto-rows: minmax(50px, auto);
     grid-template-columns:  repeat(2, 250px) 3fr 3fr 3fr;
-    grid-template-rows: 420px repeat(2, 120px) repeat(2, 200px) 64px;
+    grid-template-rows: 420px repeat(2, 120px) repeat(4, 200px) 64px;
     grid-template-areas:
         "side-nav            side-nav    features   features   features"
         "social-media-list   facebook    features   features   features"
         "social-media-list   twitter     features   features   features"
         "sign-in             sign-in     youtube    youtube    youtube"
         "newsletter          newsletter  youtube    youtube    youtube"
+        "follow-share        instagram   instagram  instagram  twitter-feed"
+        "calendar            instagram   instagram  instagram  twitter-feed"
         "credits             credits     credits    credits    credits";
 
     margin: 20px;
@@ -580,10 +602,10 @@ Features
 
 /*************************************
 
-Youtube Card
+Media Card
 
 **************************************/
-.youtube {
+.media {
     background-color: #fff;
     display: flex;
     img {
@@ -591,7 +613,7 @@ Youtube Card
         height: 64px;
         width: 64px;
     }
-    .youtube-info {
+    .media-info {
         padding: 24px;
         width: 30%;
         h3 {
@@ -607,10 +629,91 @@ Youtube Card
         color: $color-main;
         font-weight: 100;
     }
-    .overlay {
-        width: 50px;
-        height: 100px;
-        background-color: blue;
+}
+
+/*************************************
+
+Follow-Share Card
+
+**************************************/
+
+.follow-share {
+    background-image: url('../images/snow.jpg');
+    background-size: cover;
+    div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 200px;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+    }
+    a:hover img {
+        transform: scale(1.1);
+    }
+    img {
+        margin: 12px 0;
+        height: 40px;
+        width: 40px;
+    }
+}
+
+/*************************************
+
+Instagram Card
+
+**************************************/
+
+.instagram-image {
+    height: 421px;
+    width: 70%;
+    background-image: url(../images/sunset.jpg);
+    background-size: cover;
+}
+
+/*************************************
+
+Twitter Feed
+
+**************************************/
+
+.twitter-feed {
+    padding: 24px 0 24px 0;
+    color: #fff;
+    background-color: #00acee;
+    &-header {
+        display: flex;
+        align-items: center;
+        padding: 0 24px 16px 24px
+    }
+    .checkmark {
+        margin-left: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 20px;
+        height:20px;
+        background-color: #fff;
+        border-radius: 50%;
+        img {
+            height:13px;
+            width: 13px;
+        }
+    }
+    &-post {
+        padding: 16px 24px 16px 24px;
+        border-top: 1px solid $color-muted;
+        border-bottom: 1px solid $color-muted;
+        &:last-of-type {
+            border-bottom: none;
+        }
+    }
+    &-time, span {
+        font-weight: 100;
+    }
+    &-time {
+        margin-top: 16px;
     }
 }
 

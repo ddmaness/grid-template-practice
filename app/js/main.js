@@ -362,9 +362,9 @@ Vue.component('features', {
 
 Vue.component('youtube', {
     template: `
-    <div class='youtube card'>
+    <div class='youtube media card'>
         <img src='../images/play-button.svg'>
-        <div class='youtube-info'>
+        <div class='media-info'>
             <h3>Commodo sit Mollit do pariatur sint consectetur</h3>
             <p>Magna qui laboris nostrud laboris voluptate consequat ea nostrud elit culpa.Nisi irure in cillum irure.Elit ut sit nostrud labore. Quis voluptate et irure ea culpa mollit sit proident adipisicing magna non reprehenderit occaecat. <a href='#' class='read-more'>Read More</a></p>
         </div>
@@ -372,6 +372,57 @@ Vue.component('youtube', {
     </div>
     `
 });
+
+Vue.component('follow-share', {
+    template:`
+    <div class='follow-share card'>
+        <div>
+            <a href='#'><img src='../images/heart.svg'></a>
+            <a href='#'><img src='../images/share.svg'></a>
+        </div>
+    </div>
+    
+    `
+});
+
+Vue.component('instagram', {
+    template: `
+    <div class='instagram media card'>
+        <img src='../images/instagram.svg'>
+        <div class='media-info'>
+            <h3>Occaecat minim laborum quis est tempo</h3>
+            <p>Ad incididunt pariatur Lorem nisi laborum nisi fugiat. Culpa nostrud deserunt veniam cupidatat. Proident sint duis cillum exercitation aliquip officia in quis sit veniam dolore aute qui eu. Culpa amet eiusmod exercitation cupidatat exercitation tempor nostrud dolor sint veniam exercitation consequat.<a href='#' class='read-more'>Read More</a></p>
+        </div>
+        <div class='instagram-image'>
+        </div>
+    </div>
+    `
+});
+
+Vue.component('twitter-feed', {
+    data: function() {
+        return {
+            posts: [{text:'Ea veniam sint voluptate velit veniam tempor cillum laboris in fugiat cupidatat anim qui.', time: 2}, {text:'Aliquip ex amet mollit sint magna velit amet. Nostrud fugiat consectetur aute eu aliquip laborum est ad in consectetur.',time: 3}, {text:'Eu ea nulla ea ullamco nostrud ut pariatur. Enim cillum minim tempor dolor reprehenderit dolore elit esse.', time: 5}]
+        }
+    },
+    template: `
+    <div class='twitter-feed card'>
+        <div class='twitter-feed-header'><h3>Veniam amet <span>@veniamamet</span></h3><div class='checkmark'><img src='../images/checkmark.svg' alt='checkmark'></div></div>
+        <div class='twitter-feed-post' v-for="post in posts">
+        <p>{{ post.text }}</p>
+        <p class='twitter-feed-time'>{{ post.time}} hours ago</p>
+        </div>
+    </div>
+    `
+});
+
+Vue.component('calendar', {
+    template:`
+    <div class='calendar'>
+        <iframe src="https://calendar.google.com/calendar/embed?showTitle=0&amp;showPrint=0&amp;showTabs=0&amp;height=200&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;ctz=America%2FNew_York" style="border-width:0" width="250" height="200" frameborder="0" scrolling="no"></iframe>
+    </div>
+    `
+})
 
 const app = new Vue({
     el:'#app',
@@ -416,6 +467,10 @@ const app = new Vue({
                 <newsletter></newsletter>
                 <features></features>
                 <youtube></youtube>
+                <follow-share></follow-share>
+                <instagram></instagram>
+                <twitter-feed></twitter-feed>
+                <calendar></calendar>
                 <credits></credits>
             </div>
         </div>
