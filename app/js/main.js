@@ -302,7 +302,7 @@ Vue.component('sign-in', {
             </div>
         </div>
     `
-})
+});
 
 Vue.component('newsletter', {
     template:`
@@ -315,7 +315,7 @@ Vue.component('newsletter', {
         </form>
     </div>
     `
-})
+});
 
 Vue.component('credits' , {
     template:`
@@ -323,7 +323,55 @@ Vue.component('credits' , {
         <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a>, <a href="https://www.freepik.com/" title="Freepik">Freepik</a>, <a href="https://www.flaticon.com/authors/google" title="Google">Google</a>, <a href="https://www.flaticon.com/authors/yannick" title="Yannick">Yannick</a>, <a href="https://www.flaticon.com/authors/zurb" title="Zurb">Zurb</a>, <a href="https://www.flaticon.com/authors/elegant-themes" title="Elegant Themes">Elegant Themes</a>, <a href="https://www.flaticon.com/authors/dave-gandy" title="Dave Gandy">Dave Gandy</a>, <a href="https://www.flaticon.com/authors/elegant-themes" title="Elegant Themes">Elegant Themes</a>   
         from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
     `
-})
+});
+
+Vue.component('features', {
+    data: function() {
+        return {
+            activeIndex: 1,
+            features: [{title:'Reprehenderit', blurb: 'Nulla dolore do qui consequat eu officia. Labore eu aute incididunt eu incididunt elit deserunt adipisicing incididunt in pariatur ipsum sint.', background:'../images/night.jpg'},{title:'Cupidatat', blurb: 'Sunt Reprehenderit reprehenderit nisi enim laboris cupidatat officia occaecat excepteur velit Lorem nostrud. Qui cupidatat elit do quis ut in commodo.', background:'../images/beach.jpg'},{title:'Voluptate Lorem', blurb: 'Sit officia culpa aliqua exercitation ut id incididunt quis. Ex eiusmod Magna proident qui adipisicing sit tempor ex veniam velit tempor esse.', background:'../images/bridge.jpg'}]
+        };
+    },
+    methods: {
+        changeItem: function(num) {
+            this.activeIndex = (this.activeIndex + num) % 3;
+            if(this.activeIndex === -1) {
+                this.activeIndex = 2;
+            }
+        }  
+    },
+    template: `
+        <div class='features card' v-bind:style="{ backgroundImage: 'url('+ features[activeIndex].background + ')' }">
+                <h1 class="title">{{ features[activeIndex].title }}</h1>
+                <h3 class="blurb">{{ features[activeIndex].blurb }}</h3>
+                <div class="features-buttons">
+                    <div>
+                        <button class="change-button prev" v-on:click='function() {changeItem(-1)}'><img src='../images/arrow.png'></button>
+                        <button class="info-button">Magna Est</button>
+                    </div>
+                    <button class="change-button next" v-on:click='function() {changeItem(1)}'><img src='../images/arrow.png'></button>
+                </div>
+                <div class="markers">
+                    <span v-bind:class='{ active:activeIndex===0 }'></span>
+                    <span v-bind:class='{ active:activeIndex===1 }'></span>
+                    <span v-bind:class='{ active:activeIndex===2 }'></span>
+                </div>
+        </div> 
+    `
+});
+
+Vue.component('youtube', {
+    template: `
+    <div class='youtube card'>
+        <img src='../images/play-button.svg'>
+        <div class='youtube-info'>
+            <h3>Commodo sit Mollit do pariatur sint consectetur</h3>
+            <p>Magna qui laboris nostrud laboris voluptate consequat ea nostrud elit culpa.Nisi irure in cillum irure.Elit ut sit nostrud labore. Quis voluptate et irure ea culpa mollit sit proident adipisicing magna non reprehenderit occaecat. <a href='#' class='read-more'>Read More</a></p>
+        </div>
+        <iframe width="70%" height="420" src="https://www.youtube.com/embed/xNN7iTA57jM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    `
+});
 
 const app = new Vue({
     el:'#app',
@@ -348,6 +396,8 @@ const app = new Vue({
                 ></social-media-card>
                 <sign-in></sign-in>
                 <newsletter></newsletter>
+                <features></features>
+                <youtube></youtube>
                 <credits></credits>
             </div>
         </div>
