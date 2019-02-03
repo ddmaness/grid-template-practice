@@ -84,7 +84,7 @@ Grid Main Layout
     display: grid;
     grid-gap: 20px;
     grid-auto-rows: minmax(50px, auto);
-    grid-template-columns:  2fr 2fr 3fr 3fr 3fr;
+    grid-template-columns:  repeat(2, 250px) 3fr 3fr 3fr;
     grid-template-rows: 420px repeat(2, 120px) repeat(2, 200px) 64px;
     grid-template-areas:
         "side-nav            side-nav    features   features   features"
@@ -121,6 +121,7 @@ Top Nav Bar
     background-color: #fff;
     align-items: center;
     justify-content: space-between;
+    transition: all 200ms ease;
     &-left li,
     &-right > * {
         margin-right: 12px;
@@ -154,8 +155,9 @@ Top Nav Bar
         background: url(../images/search.svg) no-repeat;
         background-size: 20px 20px;
         background-position: right center;
-
-
+    }
+    &.visible {
+        top: 0;
     }
 }
 
@@ -604,6 +606,11 @@ Youtube Card
     .read-more {
         color: $color-main;
         font-weight: 100;
+    }
+    .overlay {
+        width: 50px;
+        height: 100px;
+        background-color: blue;
     }
 }
 

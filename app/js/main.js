@@ -368,7 +368,7 @@ Vue.component('youtube', {
             <h3>Commodo sit Mollit do pariatur sint consectetur</h3>
             <p>Magna qui laboris nostrud laboris voluptate consequat ea nostrud elit culpa.Nisi irure in cillum irure.Elit ut sit nostrud labore. Quis voluptate et irure ea culpa mollit sit proident adipisicing magna non reprehenderit occaecat. <a href='#' class='read-more'>Read More</a></p>
         </div>
-        <iframe width="70%" height="420" src="https://www.youtube.com/embed/xNN7iTA57jM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe width="70%" height="420" src="https://www.youtube.com/embed/xNN7iTA57jM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen><div class="overlay">test</div></iframe>
     </div>
     `
 });
@@ -376,11 +376,29 @@ Vue.component('youtube', {
 const app = new Vue({
     el:'#app',
     data: {
-        message: 'Hello World!'
+        message: 'Hello World!',
+        navBarVisible: false,
+    },
+    methods: {
+        revealNav: function() {
+            console.log(window.scrollY);
+            if(window.scrollY > 280) {
+                this.navBarVisible = true;
+            }
+            else {
+                this.navBarVisible = false;
+            }
+        }
+    },
+    created() {
+        window.addEventListener('scroll', this.revealNav);
+    },
+    destroyed() {
+        window.removeEventListener('scroll', this.revealNav);
     },
     template: `
         <div>
-            <nav-bar></nav-bar>
+            <nav-bar v-bind:class='{ visible: navBarVisible }'></nav-bar>
             <div class='grid'>
                 <side-nav-bar></side-nav-bar>
                 <social-media-list></social-media-list>
